@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block base_content %}
+
+    <form method="post" class="form-horizontal" role="form">
+        <h1>New Restaurant</h1>
+        <div class="form-group">
+            <label for="restaurant_name" class="control-label col-sm-2">Name:</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="restaurant_name">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}
