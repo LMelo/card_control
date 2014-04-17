@@ -1,15 +1,29 @@
 {% extends 'base.html' %}
 
 {% block base_content %}
+    <form class="form-horizontal" role="form" action="" method="post">
+        {% csrf_token %}
+        <h1 class="text-center white">New Restaurant</h1>
+{#        {{ object_form.as_p }}#}
 
-    <form method="post" class="form-horizontal" role="form">
-        <h1>New Restaurant</h1>
         <div class="form-group">
-            <label for="restaurant_name" class="control-label col-sm-2">Name:</label>
+            <label for="{{ object_form.name.id_for_label }}" class="control-label col-sm-2">
+                {{ object_form.name.label }}:
+            </label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" id="restaurant_name">
+                <input type="text" class="form-control" id="{{ object_form.name.id_for_label }}"
+                       name="{{ object_form.name.name }}">
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-info">Create and New</button>
+            </div>
+        </div>
+
+
+
     </form>
+    <a href="{% url 'sodexo:restaurant_list' %}" class="btn btn-default">Back</a>
 {% endblock %}

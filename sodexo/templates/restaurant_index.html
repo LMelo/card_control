@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block base_content %}
+    <aside>
+        <nav>
+            <ul>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+            </ul>
+        </nav>
+    </aside>
+    <div>
+        <a href="{% url 'sodexo:restaurant_new' %}" class="btn btn-primary">
+            New Restaurant
+        </a>
+    </div>
+    <div>
+        <table class="white table table-bordered table-condensed">
+            <caption><h2>Listing Restaurants</h2></caption>
+            <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for each_restaurant in object_list %}
+                <tr>
+                    <td>{{ each_restaurant.rest_name }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

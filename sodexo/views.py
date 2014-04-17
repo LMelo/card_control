@@ -1,10 +1,27 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from forms import MealForm
 from models import Meal
+from sodexo.forms import RestaurantForm, Restaurant
 
 
-def restaurante_new(request):
-    return render(request, 'restaurant_new.html')
+# RESTAURANT
+def restaurant_index(request):
+    restaurants = Restaurant.objects.all()
+    return render(request, 'restaurant_index.html', {'object_list': restaurants})
+
+
+def restaurant_new(request, *args, **kwargs):
+    if request.method == 'POST':
+        form_restaurant = RestaurantForm(request.POST)
+        if form_restaurant.is_valid():
+            name = form_restaurant.cleaned_data['name']
+
+            restaurant = Restaurant(rest_name=name)
+            restaurant.save()
+            return redirect('/sodexo/restaurant')
+    else:
+        form_restaurant = RestaurantForm()
+        return render(request, 'restaurant_new.html', {'object_form': form_restaurant})
 
 
 # MEALS

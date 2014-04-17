@@ -3,7 +3,13 @@ from datetime import date
 
 
 class Restaurant(models.Model):
-    rest_name = models.CharField(verbose_name="name", max_length=100)
+    rest_name = models.CharField(verbose_name="name", max_length=100, unique=True)
+
+    def __unicode__(self):
+        return "%s" % self.rest_name
+
+    class Meta:
+        ordering = ['rest_name']
 
 
 class Meal(models.Model):
@@ -14,4 +20,4 @@ class Meal(models.Model):
     )
 
     def __unicode__(self):
-        return '%s - %s: R$ %s' % (self.meal_date, self.meal_restaurant or '', self.meal_value)
+        return "%s - %s: R$ %s" % (self.meal_date, self.meal_restaurant or '', self.meal_value)
